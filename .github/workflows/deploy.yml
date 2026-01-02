@@ -34,4 +34,4 @@ jobs:
           source: "out/*"
           target: "/var/www/kishkindhafoods"
           strip_components: 1
-          rm: true
+          overwrite: true
