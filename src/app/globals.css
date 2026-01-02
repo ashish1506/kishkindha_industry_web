@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Primary Colors */
+  --color-primary: #1B4332;
+  --color-primary-light: #2D6A4F;
+  --color-primary-dark: #132A21;
+
+  /* Accent Colors */
+  --color-accent: #D4A847;
+  --color-accent-light: #E4C067;
+
+  /* Neutral Colors */
+  --color-background: #FAF8F5;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #2D2D2D;
+  --color-text-secondary: #6B6B6B;
+  --color-border: #E5E5E5;
+
+  /* WhatsApp */
+  --color-whatsapp: #25D366;
+
+  /* Fonts */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', 'Helvetica Neue', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-background);
+  color: var(--color-text-primary);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Button base styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: all 300ms ease;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.btn-primary {
+  background: #1B4332;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+}
+
+.btn-primary:hover {
+  background: #2D6A4F;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #1B4332;
+  border: 2px solid #1B4332;
+  padding: 12px 26px;
+}
+
+.btn-secondary:hover {
+  background: #1B4332;
+  color: white;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  padding: 14px 28px;
+  border: none;
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07);
+}
+
+/* Section padding */
+.section-padding {
+  padding: 48px 0;
+}
+
+@media (min-width: 768px) {
+  .section-padding {
+    padding: 64px 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-padding {
+    padding: 96px 0;
+  }
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 24px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 32px;
+  }
+}
+
+/* Form input styles */
+.form-input {
+  width: 100%;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 16px;
+  transition: all 150ms ease;
+  background: #FFFFFF;
+  color: #2D2D2D;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1B4332;
+  box-shadow: 0 0 0 3px rgba(27, 67, 50, 0.1);
+}
+
+.form-input::placeholder {
+  color: #6B6B6B;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 300ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(27, 67, 50, 0.12);
 }
