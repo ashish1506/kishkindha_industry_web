@@ -132,28 +132,27 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      // For static export, we'll use mailto as fallback
-      // In production, you could use Formspree, EmailJS, or a serverless function
-      const subject = `New Inquiry from ${formData.businessName}`;
-      const body = `
-New inquiry received:
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          businessName: formData.businessName,
+          email: formData.email,
+          phone: formData.phone,
+          city: formData.city,
+          businessType: formData.businessType,
+          productsInterested: formData.productsInterested,
+          monthlyRequirement: formData.monthlyRequirement,
+          message: formData.message,
+        }),
+      });
 
-Name: ${formData.fullName}
-Business: ${formData.businessName}
-Email: ${formData.email}
-Phone: ${formData.phone}
-City: ${formData.city}
-Business Type: ${formData.businessType}
-Products Interested: ${formData.productsInterested.join(', ')}
-Monthly Requirement: ${formData.monthlyRequirement || 'Not specified'}
-Message: ${formData.message || 'No message'}
-
----
-Submitted via kishkindhafoods.com
-      `.trim();
-
-      // Open mailto link
-      window.location.href = `mailto:support@kishkindhafoods.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
 
       setSubmitStatus('success');
       setFormData({
