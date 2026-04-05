@@ -95,14 +95,14 @@ export async function POST(request: NextRequest) {
 
         <div style="background-color: #132A21; padding: 20px; text-align: center;">
           <p style="color: #D4A847; margin: 0; font-size: 14px;">
-            Submitted via kishkindhafoods.com
+            Submitted via kishkindhaindustry.com
           </p>
         </div>
       </div>
     `;
 
     const emailText = `
-New Quote Request from Kishkindha Foods Website
+New Quote Request from Kishkindha Industry Website
 
 CONTACT DETAILS
 ----------------
@@ -121,15 +121,15 @@ Monthly Requirement: ${data.monthlyRequirement || 'Not specified'}
 ${data.message ? `MESSAGE\n-------\n${data.message}` : ''}
 
 ---
-Submitted via kishkindhafoods.com
+Submitted via kishkindhaindustry.com
     `.trim();
 
     // Send email via SendGrid
     const msg = {
-      to: 'sales@kishkindhafoods.com',
+      to: 'Meenakshi.jss3011@gmail.com',
       from: {
-        email: process.env.SENDGRID_FROM_EMAIL || 'noreply@kishkindhafoods.com',
-        name: 'Kishkindha Foods Website',
+        email: process.env.SENDGRID_FROM_EMAIL || 'noreply@kishkindhaindustry.com',
+        name: 'Kishkindha Industry Website',
       },
       replyTo: data.email,
       subject: `New Quote Request: ${data.businessName} - ${data.city}`,

@@ -1,45 +1,44 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ShieldCheck, Truck, Package, Tag, Leaf, Headphones, CheckCircle } from 'lucide-react';
+import { ShieldCheck, Truck, Package, Tag, FileText, Headphones, CheckCircle } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Why Choose Kishkindha Foods | Quality, Reliability, Value',
+  title: 'Why Choose Kishkindha Industry | Quality, Reliability, Value',
   description:
-    'Discover why businesses across India trust Kishkindha Foods for their food supply needs. Quality assurance, reliable delivery, competitive pricing, 100% vegetarian.',
+    'Discover why institutions across India trust Kishkindha Industry for their facility management supplies. Quality assured products, reliable supply chain, competitive pricing, GST invoiced.',
 };
 
 const differentiators = [
   {
     icon: ShieldCheck,
-    title: 'Quality You Can Trust',
+    title: 'Quality Assured Products',
     description:
-      'Every product that leaves our facility has passed through rigorous quality checks. We maintain strict standards because we understand that your reputation depends on the ingredients you use.',
+      'Every product we supply is sourced from reputed manufacturers and undergoes quality checks before dispatch. We ensure consistency across batches so your operations never miss a beat.',
     points: [
-      'Sourced from verified suppliers',
-      'Quality testing at multiple stages',
-      'Consistent product standards',
+      'Sourced from reputed manufacturers',
+      'Quality checks before dispatch',
+      'Consistent across batches',
     ],
   },
   {
     icon: Truck,
     title: 'Reliable Supply Chain',
     description:
-      "Running out of stock is not an option for your business. Our robust supply chain and inventory management ensure you always have what you need, when you need it.",
+      'Running out of essential supplies is not an option for your facility. Our robust supply chain and logistics network ensure timely delivery across India with full order tracking.',
     points: [
       'Pan-India delivery network',
-      'Consistent availability',
-      'On-time delivery commitment',
+      'Timely dispatch commitment',
+      'Order tracking available',
     ],
   },
   {
     icon: Package,
     title: 'Bulk Order Specialists',
     description:
-      "We understand bulk. From packaging to logistics, our entire operation is optimized for large-scale orders. Whether you need a single category or a complete range, we've got you covered.",
+      'Our entire operation is optimized for institutional scale. From flexible minimum order quantities to streamlined ordering processes, we make bulk procurement effortless.',
     points: [
-      'Optimized for large orders',
-      'Flexible packaging options',
+      'Optimized for institutional scale',
+      'Flexible MOQs',
       'Streamlined ordering process',
     ],
   },
@@ -47,31 +46,31 @@ const differentiators = [
     icon: Tag,
     title: 'Competitive Pricing',
     description:
-      "Quality doesn't have to be expensive. Our direct sourcing and efficient operations allow us to offer premium products at competitive prices.",
+      'Our direct procurement from manufacturers and efficient operations allow us to pass on bulk pricing advantages to you. Transparent pricing with no hidden charges.',
     points: [
-      'Direct sourcing advantages',
-      'Volume-based pricing',
-      'Transparent quotations',
+      'Bulk procurement advantages',
+      'Transparent pricing',
+      'No hidden charges',
     ],
   },
   {
-    icon: Leaf,
-    title: '100% Pure Vegetarian',
+    icon: FileText,
+    title: 'GST Invoiced',
     description:
-      'Complete peace of mind. Our entire operation — from sourcing to storage to delivery — maintains strict vegetarian standards.',
+      'Proper GST invoicing on every order. We also offer credit facility for regular customers and support multiple payment options to suit your procurement workflow.',
     points: [
-      'No non-vegetarian products handled',
-      'Dedicated vegetarian supply chain',
-      'Suitable for all vegetarian establishments',
+      'Proper GST invoicing',
+      'Credit facility for regular customers',
+      'Multiple payment options',
     ],
   },
   {
     icon: Headphones,
     title: 'Dedicated Support',
     description:
-      "You're not just another order number. Our team provides personalized attention to every business partner.",
+      "You're not just another order number. Every client gets a dedicated account manager who ensures quick response times and proactive communication.",
     points: [
-      'Single point of contact',
+      'Dedicated account managers',
       'Quick response times',
       'Proactive communication',
     ],
@@ -83,20 +82,12 @@ export default function WhyUsPage() {
     <>
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-[#1B4332]">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/hero/spices-hero.jpg"
-            alt="Quality background"
-            fill
-            className="object-cover"
-          />
-        </div>
         <div className="container relative px-4 md:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Why Businesses Choose Kishkindha Foods
+            Why Institutions Choose Kishkindha Industry
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-            Your success is built on reliable partnerships
+            Your trusted partner for institutional facility management supplies
           </p>
         </div>
       </section>
@@ -109,7 +100,7 @@ export default function WhyUsPage() {
               The Kishkindha Advantage
             </h2>
             <p className="text-[#6B6B6B] max-w-2xl mx-auto">
-              Six reasons why businesses across India trust us as their preferred food supply partner
+              Six reasons why institutions across India trust us as their preferred supply partner
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-8 lg:gap-10">
@@ -154,20 +145,20 @@ export default function WhyUsPage() {
         <div className="container px-4 md:px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-6 md:gap-12 lg:gap-16">
             <div className="flex items-center gap-3">
-              <Leaf className="w-6 h-6 text-[#D4A847]" />
-              <span className="text-white font-medium">100% Pure Vegetarian</span>
+              <Package className="w-6 h-6 text-[#D4A847]" />
+              <span className="text-white font-medium">190+ Products</span>
             </div>
             <div className="flex items-center gap-3">
               <Truck className="w-6 h-6 text-[#D4A847]" />
               <span className="text-white font-medium">Pan India Delivery</span>
             </div>
             <div className="flex items-center gap-3">
-              <Package className="w-6 h-6 text-[#D4A847]" />
-              <span className="text-white font-medium">Bulk Order Specialists</span>
+              <FileText className="w-6 h-6 text-[#D4A847]" />
+              <span className="text-white font-medium">GST Invoiced</span>
             </div>
             <div className="flex items-center gap-3">
               <Headphones className="w-6 h-6 text-[#D4A847]" />
-              <span className="text-white font-medium">24hr Response Time</span>
+              <span className="text-white font-medium">24hr Response</span>
             </div>
           </div>
         </div>
@@ -180,7 +171,7 @@ export default function WhyUsPage() {
             Ready to Experience the Kishkindha Difference?
           </h2>
           <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-            Join hundreds of businesses that trust us for their food supply needs
+            Join leading institutions that trust us for their facility management supply needs
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

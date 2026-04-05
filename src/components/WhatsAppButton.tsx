@@ -2,8 +2,8 @@
 
 import { useState } from 'react';
 
-const WHATSAPP_NUMBER = '917042272565';
-const DEFAULT_MESSAGE = "Hi, I'm interested in Kishkindha Foods products. Please share more details.";
+const WHATSAPP_NUMBER = '919354162565';
+const DEFAULT_MESSAGE = "Hi, I'm interested in Kishkindha Industry products. Please share more details.";
 
 interface WhatsAppButtonProps {
   message?: string;

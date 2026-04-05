@@ -1,5 +1,5 @@
 <svg viewBox="0 0 280 50" xmlns="http://www.w3.org/2000/svg">
-  <!-- Kishkindha Foods Full Logo - White Version for Dark Backgrounds -->
+  <!-- Kishkindha Industry Full Logo - White Version for Dark Backgrounds -->
 
   <!-- K Symbol (scaled down) -->
   <g transform="translate(0, 2) scale(0.55)">
@@ -10,6 +10,6 @@
   <!-- KISHKINDHA text -->
   <text x="52" y="28" font-family="Georgia, 'Playfair Display', serif" font-size="20" font-weight="600" fill="#FFFFFF" letter-spacing="1">KISHKINDHA</text>
 
-  <!-- FOODS text -->
-  <text x="52" y="46" font-family="Georgia, 'Playfair Display', serif" font-size="14" font-weight="400" fill="#D4A847" letter-spacing="3">FOODS</text>
+  <!-- INDUSTRY text -->
+  <text x="52" y="46" font-family="Georgia, 'Playfair Display', serif" font-size="14" font-weight="400" fill="#D4A847" letter-spacing="3">INDUSTRY</text>
 </svg>

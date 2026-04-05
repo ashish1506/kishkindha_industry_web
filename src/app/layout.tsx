@@ -22,31 +22,31 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Kishkindha Foods | Premium B2B Food Supplies Across India",
-    template: "%s | Kishkindha Foods",
+    default: "Kishkindha Industry | B2B Institutional Supplies Across India",
+    template: "%s | Kishkindha Industry",
   },
   description:
-    "Bulk food supplies for businesses - flours, pulses, spices, dry fruits, rice. Quality products, competitive pricing, pan-India delivery. Request a quote today.",
+    "Institutional supplies for hospitals, hotels, universities & corporates - housekeeping, stationery, hygiene, facility maintenance. 190+ products, pan-India delivery.",
   keywords: [
-    "B2B food supplies",
-    "bulk food supplier India",
-    "wholesale food Delhi",
-    "restaurant food supplier",
-    "flour supplier",
-    "pulses wholesale",
-    "spices bulk",
-    "dry fruits wholesale",
-    "rice supplier India",
+    "institutional supplies India",
+    "B2B housekeeping supplier",
+    "bulk stationery supplier Delhi",
+    "hospital supplies India",
+    "cleaning chemicals wholesale",
+    "office stationery bulk",
+    "facility management supplies",
+    "hygiene products supplier",
+    "waste management supplies",
   ],
-  authors: [{ name: "Kishkindha Foods" }],
+  authors: [{ name: "Kishkindha Industry" }],
   openGraph: {
     type: "website",
     locale: "en_IN",
-    url: "https://kishkindhafoods.com",
-    siteName: "Kishkindha Foods",
-    title: "Kishkindha Foods | Premium B2B Food Supplies Across India",
+    url: "https://kishkindhaindustry.com",
+    siteName: "Kishkindha Industry",
+    title: "Kishkindha Industry | B2B Institutional Supplies Across India",
     description:
-      "Bulk food supplies for businesses - flours, pulses, spices, dry fruits, rice. Quality products, competitive pricing, pan-India delivery.",
+      "190+ institutional supplies for hospitals, hotels, universities & corporates. Housekeeping, stationery, hygiene, facility maintenance. Pan-India delivery.",
   },
   robots: {
     index: true,

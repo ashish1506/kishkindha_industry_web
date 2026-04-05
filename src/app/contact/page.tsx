@@ -1,33 +1,36 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
-import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, CheckCircle, AlertCircle, Loader2, FileText } from 'lucide-react';
 
 const businessTypes = [
-  'Restaurant',
-  'Hotel',
-  'Caterer',
-  'Food Manufacturer',
-  'Retailer/Wholesaler',
-  'Institutional',
+  'Hospital / Clinic',
+  'Hotel / Resort',
+  'University / College',
+  'Government Office',
+  'Corporate Office',
+  'School',
+  'Restaurant / Caterer',
+  'Industrial Unit',
   'Other',
 ];
 
 const productCategories = [
-  'Flours & Atta',
-  'Pulses & Lentils',
-  'Spices',
-  'Dry Fruits',
-  'Rice & Grains',
+  'Cleaning Solutions & Chemicals',
+  'Cleaning Tools & Equipment',
+  'Waste Management',
+  'Washroom & Hygiene',
+  'Facility Maintenance & Safety',
+  'Healthcare Supplies',
+  'Kitchen & Pantry',
+  'Office & Stationery',
 ];
 
 const monthlyRequirements = [
-  'Less than 100 kg',
-  '100-500 kg',
-  '500 kg - 1 ton',
-  '1-5 tons',
-  'More than 5 tons',
+  'Under \u20B925,000',
+  '\u20B925,000 - \u20B91,00,000',
+  '\u20B91,00,000 - \u20B95,00,000',
+  'Above \u20B95,00,000',
 ];
 
 interface FormData {
@@ -36,6 +39,7 @@ interface FormData {
   email: string;
   phone: string;
   city: string;
+  gstin: string;
   businessType: string;
   productsInterested: string[];
   monthlyRequirement: string;
@@ -54,6 +58,7 @@ export default function ContactPage() {
     email: '',
     phone: '',
     city: '',
+    gstin: '',
     businessType: '',
     productsInterested: [],
     monthlyRequirement: '',
@@ -143,6 +148,7 @@ export default function ContactPage() {
           email: formData.email,
           phone: formData.phone,
           city: formData.city,
+          gstin: formData.gstin,
           businessType: formData.businessType,
           productsInterested: formData.productsInterested,
           monthlyRequirement: formData.monthlyRequirement,
@@ -161,6 +167,7 @@ export default function ContactPage() {
         email: '',
         phone: '',
         city: '',
+        gstin: '',
         businessType: '',
         productsInterested: [],
         monthlyRequirement: '',
@@ -187,20 +194,12 @@ export default function ContactPage() {
     <>
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-[#1B4332]">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/hero/spices-hero.jpg"
-            alt="Contact background"
-            fill
-            className="object-cover"
-          />
-        </div>
         <div className="container relative px-4 md:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             Let&apos;s Work Together
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-            Get in touch for quotes, inquiries, or to discuss your requirements
+            Get in touch for institutional supply inquiries, bulk quotes, or to discuss your facility management requirements
           </p>
         </div>
       </section>
@@ -223,10 +222,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">Email</h3>
                     <a
-                      href="mailto:support@kishkindhafoods.com"
+                      href="mailto:Meenakshi.jss3011@gmail.com"
                       className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors"
                     >
-                      support@kishkindhafoods.com
+                      Meenakshi.jss3011@gmail.com
                     </a>
                   </div>
                 </div>
@@ -238,10 +237,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">Phone</h3>
                     <a
-                      href="tel:+917042272565"
+                      href="tel:+919354162565"
                       className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors"
                     >
-                      +91 7042272565
+                      +91 9354162565
                     </a>
                   </div>
                 </div>
@@ -255,15 +254,15 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">WhatsApp</h3>
                     <a
-                      href="https://wa.me/917042272565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Foods%20products.%20Please%20share%20more%20details."
+                      href="https://wa.me/919354162565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Industry%20products.%20Please%20share%20more%20details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[#6B6B6B] hover:text-[#25D366] transition-colors block mb-3"
                     >
-                      +91 7042272565
+                      +91 9354162565
                     </a>
                     <a
-                      href="https://wa.me/917042272565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Foods%20products.%20Please%20share%20more%20details."
+                      href="https://wa.me/919354162565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Industry%20products.%20Please%20share%20more%20details."
                       target="_blank"
                       rel="noopener noreferrer"
                       className="btn btn-whatsapp text-sm py-2 px-4 inline-block"
@@ -278,8 +277,24 @@ export default function ContactPage() {
                     <MapPin className="w-6 h-6 text-[#1B4332]" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-[#2D2D2D] mb-1">Location</h3>
-                    <p className="text-[#6B6B6B]">Delhi, India</p>
+                    <h3 className="font-semibold text-[#2D2D2D] mb-1">Address</h3>
+                    <p className="text-[#6B6B6B]">
+                      Ground Floor, 271 Block-C, Plot No. 65,
+                      <br />
+                      Village - Prahladpur Bangar, Prahlad Vihar,
+                      <br />
+                      Delhi - 110042
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-[#1B4332]/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-6 h-6 text-[#1B4332]" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#2D2D2D] mb-1">GSTIN</h3>
+                    <p className="text-[#6B6B6B]">07ABFFK0271R1ZX</p>
                   </div>
                 </div>
 
@@ -324,7 +339,7 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-semibold text-red-800">Oops! Something went wrong.</h4>
                       <p className="text-sm text-red-700">
-                        Please try again or contact us directly at support@kishkindhafoods.com
+                        Please try again or contact us directly at Meenakshi.jss3011@gmail.com
                       </p>
                     </div>
                   </div>
@@ -433,26 +448,40 @@ export default function ContactPage() {
                     </div>
 
                     <div>
-                      <label htmlFor="businessType" className="block text-sm font-medium text-[#2D2D2D] mb-2">
-                        Business Type *
+                      <label htmlFor="gstin" className="block text-sm font-medium text-[#2D2D2D] mb-2">
+                        GSTIN (Optional)
                       </label>
-                      <select
-                        id="businessType"
-                        value={formData.businessType}
-                        onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                        className={`form-input ${errors.businessType ? 'border-red-500' : ''}`}
-                      >
-                        <option value="">Select business type</option>
-                        {businessTypes.map((type) => (
-                          <option key={type} value={type}>
-                            {type}
-                          </option>
-                        ))}
-                      </select>
-                      {errors.businessType && (
-                        <p className="mt-1 text-sm text-red-600">{errors.businessType}</p>
-                      )}
+                      <input
+                        type="text"
+                        id="gstin"
+                        value={formData.gstin}
+                        onChange={(e) => setFormData({ ...formData, gstin: e.target.value })}
+                        className="form-input"
+                        placeholder="e.g. 07ABCDE1234F1ZX"
+                      />
                     </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="businessType" className="block text-sm font-medium text-[#2D2D2D] mb-2">
+                      Business Type *
+                    </label>
+                    <select
+                      id="businessType"
+                      value={formData.businessType}
+                      onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
+                      className={`form-input ${errors.businessType ? 'border-red-500' : ''}`}
+                    >
+                      <option value="">Select business type</option>
+                      {businessTypes.map((type) => (
+                        <option key={type} value={type}>
+                          {type}
+                        </option>
+                      ))}
+                    </select>
+                    {errors.businessType && (
+                      <p className="mt-1 text-sm text-red-600">{errors.businessType}</p>
+                    )}
                   </div>
 
                   <div>
@@ -552,7 +581,7 @@ export default function ContactPage() {
               Prefer WhatsApp? Chat with us directly!
             </p>
             <a
-              href="https://wa.me/917042272565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Foods%20products.%20Please%20share%20more%20details."
+              href="https://wa.me/919354162565?text=Hi,%20I'm%20interested%20in%20Kishkindha%20Industry%20products.%20Please%20share%20more%20details."
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-whatsapp"

@@ -1,5 +1,5 @@
 {
-  "name": "kishkindha-foods-web",
+  "name": "kishkindha-industry-web",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@sendgrid/mail": "^8.1.6",
+    "jspdf": "^4.2.1",
     "lucide-react": "^0.562.0",
     "next": "16.1.1",
     "react": "19.2.3",

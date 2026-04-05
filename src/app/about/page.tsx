@@ -1,12 +1,11 @@
 import { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import { Award, Handshake, Leaf, CheckCircle } from 'lucide-react';
+import { Award, Handshake, Receipt, CheckCircle, Hospital, Hotel, GraduationCap, Building2, Briefcase } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About Kishkindha Foods | Your Trusted Food Supply Partner',
+  title: 'About Kishkindha Industry | Your Trusted Institutional Supply Partner',
   description:
-    'Learn about Kishkindha Foods - Delhi-based B2B food supplier serving restaurants, hotels, caterers, and food manufacturers across India with premium quality products.',
+    'Learn about Kishkindha Industry - Delhi-based B2B institutional supply company serving hospitals, hotels, universities, government offices, and corporate houses across India with comprehensive facility management supplies.',
 };
 
 const values = [
@@ -14,39 +13,74 @@ const values = [
     icon: Award,
     title: 'Uncompromising Quality',
     description:
-      'We never cut corners. Every product is sourced from verified suppliers and undergoes quality checks before dispatch.',
+      'Every product is sourced from reputed manufacturers and undergoes quality checks before dispatch. No compromises, ever.',
   },
   {
     icon: Handshake,
     title: 'Business Partnership',
     description:
-      "We don't just supply products — we build lasting partnerships. Your success is our success.",
+      "We don't just supply products — we build lasting partnerships. Your operational efficiency is our success.",
   },
   {
-    icon: Leaf,
-    title: 'Pure & Vegetarian',
+    icon: Receipt,
+    title: 'Transparent Pricing',
     description:
-      '100% vegetarian operations. No compromise on purity and sanctity of food products.',
+      'Clear, competitive pricing with proper GST invoicing. No hidden charges, no surprises — just honest business.',
   },
 ];
 
 const expertise = [
   {
-    title: 'Sourcing Excellence',
-    description: 'Direct relationships with farmers, mills, and processors across India',
+    title: 'Bulk Procurement',
+    description: 'Direct sourcing from manufacturers for the best prices and consistent supply',
   },
   {
     title: 'Quality Assurance',
-    description: 'Systematic quality control at every stage',
+    description: 'Rigorous quality checks before every dispatch to ensure product consistency',
   },
   {
-    title: 'Logistics Mastery',
-    description: 'Efficient pan-India distribution network',
+    title: 'Pan-India Logistics',
+    description: 'Efficient delivery network ensuring timely supply across the country',
   },
   {
-    title: 'Customer Focus',
-    description: 'Dedicated support for every business partner',
+    title: 'Dedicated Support',
+    description: 'Assigned account managers for every client, ensuring personalized attention',
   },
+];
+
+const industries = [
+  {
+    icon: Hospital,
+    title: 'Healthcare',
+    description: 'Hospitals, clinics, and medical facilities requiring hygiene and healthcare supplies.',
+  },
+  {
+    icon: Hotel,
+    title: 'Hospitality',
+    description: 'Hotels, resorts, and service apartments needing housekeeping and cleaning solutions.',
+  },
+  {
+    icon: GraduationCap,
+    title: 'Education',
+    description: 'Universities, colleges, and schools requiring stationery and facility maintenance products.',
+  },
+  {
+    icon: Building2,
+    title: 'Government',
+    description: 'Government offices and public sector undertakings with institutional supply needs.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Corporate',
+    description: 'Corporate houses and office complexes needing pantry, washroom, and maintenance supplies.',
+  },
+];
+
+const keyClients = [
+  { name: 'GLA University', location: 'Mathura' },
+  { name: 'Umkal Healthcare', location: 'Gurgaon' },
+  { name: 'Park Medi World', location: 'Panchkula' },
+  { name: 'Metro Hospital', location: 'Gurgaon' },
 ];
 
 export default function AboutPage() {
@@ -54,20 +88,12 @@ export default function AboutPage() {
     <>
       {/* Hero Section */}
       <section className="relative py-20 md:py-28 bg-[#1B4332]">
-        <div className="absolute inset-0 opacity-20">
-          <Image
-            src="/images/hero/spices-hero.jpg"
-            alt="About us background"
-            fill
-            className="object-cover"
-          />
-        </div>
         <div className="container relative px-4 md:px-6 lg:px-8 text-center">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             The Kishkindha Story
           </h1>
           <p className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto">
-            Building India&apos;s Most Trusted B2B Food Supply Network
+            Building India&apos;s Most Trusted Institutional Supply Network
           </p>
         </div>
       </section>
@@ -81,16 +107,16 @@ export default function AboutPage() {
             </h2>
             <div className="prose prose-lg max-w-none text-[#6B6B6B] space-y-6">
               <p className="leading-relaxed">
-                Kishkindha Foods emerged from a simple observation — businesses across India struggle to find reliable, consistent sources for quality food supplies. Too often, they face inconsistent quality, unreliable deliveries, and opaque pricing.
+                Kishkindha Industry was founded with a clear mission — to become the most reliable institutional supply partner for organizations across India. We observed that businesses struggle to find a single, dependable source for the wide range of facility management products they need daily.
               </p>
               <p className="leading-relaxed font-semibold text-[#1B4332]">
                 We set out to change that.
               </p>
               <p className="leading-relaxed">
-                Named after the legendary kingdom of abundance from Indian heritage, Kishkindha Foods is built on the foundation of trust, quality, and reliability. Our team combines decades of experience in food sourcing, supply chain management, and quality assurance to serve businesses of all sizes.
+                Based in Delhi, we serve hospitals, hotels, universities, government offices, and corporate houses with a comprehensive range of supplies — from cleaning chemicals and housekeeping products to washroom hygiene, waste management, healthcare supplies, and office stationery.
               </p>
               <p className="leading-relaxed">
-                From our base in Delhi, we&apos;ve developed a pan-India network that ensures every order — whether it&apos;s premium basmati rice for a five-star hotel or bulk pulses for a food manufacturer — is delivered on time and meets our exacting standards.
+                Our team combines deep expertise in procurement, quality control, and logistics to ensure every order is fulfilled on time and meets our exacting standards. We work directly with reputed manufacturers, cutting out middlemen to deliver the best products at competitive prices.
               </p>
             </div>
           </div>
@@ -141,10 +167,10 @@ export default function AboutPage() {
               Our Expertise
             </h2>
             <p className="text-lg text-[#6B6B6B] text-center mb-10">
-              Our team brings specialized expertise across the food supply chain
+              Our team brings specialized expertise across the institutional supply chain
             </p>
             <div className="grid sm:grid-cols-2 gap-6">
-              {expertise.map((item, index) => (
+              {expertise.map((item) => (
                 <div
                   key={item.title}
                   className="bg-white rounded-xl p-6 shadow-sm hover:shadow-md transition-shadow duration-300 border border-[#E5E5E5]"
@@ -169,6 +195,67 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Industries We Serve Section */}
+      <section className="section-padding bg-white">
+        <div className="container px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-4">
+              Industries We Serve
+            </h2>
+            <p className="text-[#6B6B6B] max-w-2xl mx-auto">
+              Trusted by institutions across diverse sectors for their facility management needs
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 max-w-6xl mx-auto">
+            {industries.map((industry) => (
+              <div
+                key={industry.title}
+                className="bg-[#FAF8F5] rounded-xl p-6 text-center hover:shadow-md transition-shadow duration-300 border border-[#E5E5E5]"
+              >
+                <div className="w-14 h-14 bg-[#1B4332]/10 rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <industry.icon className="w-7 h-7 text-[#1B4332]" />
+                </div>
+                <h3 className="font-semibold text-[#1B4332] mb-2">
+                  {industry.title}
+                </h3>
+                <p className="text-[#6B6B6B] text-sm leading-relaxed">
+                  {industry.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Clients Section */}
+      <section className="section-padding bg-[#FAF8F5]">
+        <div className="container px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-[#1B4332] mb-4">
+              Key Clients
+            </h2>
+            <p className="text-[#6B6B6B] max-w-2xl mx-auto">
+              Trusted by leading institutions across India
+            </p>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            {keyClients.map((client) => (
+              <div
+                key={client.name}
+                className="bg-white rounded-xl p-6 text-center shadow-sm border border-[#E5E5E5]"
+              >
+                <h3 className="font-semibold text-[#1B4332] mb-1">
+                  {client.name}
+                </h3>
+                <p className="text-[#6B6B6B] text-sm">
+                  {client.location}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="bg-[#2D6A4F] py-16 md:py-20">
         <div className="container px-4 md:px-6 lg:px-8 text-center">
@@ -176,7 +263,7 @@ export default function AboutPage() {
             Let&apos;s Discuss How We Can Support Your Business
           </h2>
           <p className="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-            Partner with Kishkindha Foods for reliable, quality food supplies
+            Partner with Kishkindha Industry for reliable, quality institutional supplies
           </p>
           <Link
             href="/contact"

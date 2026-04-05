@@ -6,11 +6,15 @@ import Image from 'next/image';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
 const productCategories = [
-  { name: 'Flours & Atta', href: '/products#flours' },
-  { name: 'Pulses & Lentils', href: '/products#pulses' },
-  { name: 'Spices', href: '/products#spices' },
-  { name: 'Dry Fruits', href: '/products#dry-fruits' },
-  { name: 'Rice & Grains', href: '/products#rice-grains' },
+  { name: 'All Products', href: '/products' },
+  { name: 'Cleaning Solutions & Chemicals', href: '/products#cleaning-solutions' },
+  { name: 'Cleaning Tools & Equipment', href: '/products#cleaning-tools' },
+  { name: 'Waste Management', href: '/products#waste-management' },
+  { name: 'Washroom & Hygiene', href: '/products#washroom-hygiene' },
+  { name: 'Facility Maintenance & Safety', href: '/products#facility-maintenance' },
+  { name: 'Healthcare Supplies', href: '/products#healthcare' },
+  { name: 'Kitchen & Pantry', href: '/products#kitchen-pantry' },
+  { name: 'Office & Stationery', href: '/products#office-stationery' },
 ];
 
 const navLinks = [
@@ -46,7 +50,7 @@ export default function Header() {
           <Link href="/" className="flex items-center gap-2">
             <Image
               src="/logo-full.svg"
-              alt="Kishkindha Foods"
+              alt="Kishkindha Industry"
               width={180}
               height={40}
               className="h-8 md:h-10 w-auto"
@@ -78,12 +82,12 @@ export default function Header() {
                         isProductsOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
                       }`}
                     >
-                      <div className="bg-white rounded-lg shadow-lg border border-[#E5E5E5] py-2 min-w-[200px]">
+                      <div className="bg-white rounded-lg shadow-lg border border-[#E5E5E5] py-2 min-w-[280px]">
                         {productCategories.map((category) => (
                           <Link
                             key={category.name}
                             href={category.href}
-                            className="block px-4 py-2 text-[#2D2D2D] hover:bg-[#FAF8F5] hover:text-[#1B4332] transition-colors"
+                            className="block px-4 py-2 text-sm text-[#2D2D2D] hover:bg-[#FAF8F5] hover:text-[#1B4332] transition-colors"
                           >
                             {category.name}
                           </Link>
