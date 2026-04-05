@@ -126,7 +126,7 @@ Submitted via kishkindhaindustry.com
 
     // Send email via SendGrid
     const msg = {
-      to: 'Meenakshi.jss3011@gmail.com',
+      to: 'support@kishkindhaindustry.com',
       from: {
         email: process.env.SENDGRID_FROM_EMAIL || 'noreply@kishkindhaindustry.com',
         name: 'Kishkindha Industry Website',

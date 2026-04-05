@@ -222,10 +222,10 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">Email</h3>
                     <a
-                      href="mailto:Meenakshi.jss3011@gmail.com"
+                      href="mailto:support@kishkindhaindustry.com"
                       className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors"
                     >
-                      Meenakshi.jss3011@gmail.com
+                      support@kishkindhaindustry.com
                     </a>
                   </div>
                 </div>
@@ -238,9 +238,15 @@ export default function ContactPage() {
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">Phone</h3>
                     <a
                       href="tel:+919354162565"
-                      className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors"
+                      className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors block"
                     >
                       +91 9354162565
+                    </a>
+                    <a
+                      href="tel:+919810201088"
+                      className="text-[#6B6B6B] hover:text-[#1B4332] transition-colors block"
+                    >
+                      +91 9810201088
                     </a>
                   </div>
                 </div>
@@ -279,11 +285,11 @@ export default function ContactPage() {
                   <div>
                     <h3 className="font-semibold text-[#2D2D2D] mb-1">Address</h3>
                     <p className="text-[#6B6B6B]">
-                      Ground Floor, 271 Block-C, Plot No. 65,
+                      Property No. 26, Basement,
                       <br />
-                      Village - Prahladpur Bangar, Prahlad Vihar,
+                      DLF Industrial Area, Moti Nagar,
                       <br />
-                      Delhi - 110042
+                      Delhi - 110015
                     </p>
                   </div>
                 </div>
@@ -339,7 +345,7 @@ export default function ContactPage() {
                     <div>
                       <h4 className="font-semibold text-red-800">Oops! Something went wrong.</h4>
                       <p className="text-sm text-red-700">
-                        Please try again or contact us directly at Meenakshi.jss3011@gmail.com
+                        Please try again or contact us directly at support@kishkindhaindustry.com
                       </p>
                     </div>
                   </div>

@@ -52,7 +52,7 @@ export function generateCataloguePdf() {
     doc.setFontSize(6.5);
     doc.setTextColor(...C.white);
     doc.text(
-      'Kishkindha Industry  |  Prahlad Vihar, Delhi 110042  |  +91 9354162565  |  kishkindhaindustry.com',
+      'Kishkindha Industry  |  DLF Industrial Area, Moti Nagar, Delhi 110015  |  +91 9354162565 / 9810201088',
       PAGE_W / 2, PAGE_H - 3.5, { align: 'center' }
     );
   }
@@ -117,59 +117,64 @@ export function generateCataloguePdf() {
   // Contact block
   doc.setFontSize(8.5);
   doc.setTextColor(...C.accent);
-  doc.text('Ground Floor, 271 Block-C, Plot No. 65, Prahladpur Bangar', PAGE_W / 2, 232, { align: 'center' });
-  doc.text('Prahlad Vihar, Delhi - 110042', PAGE_W / 2, 239, { align: 'center' });
-  doc.text('+91 9354162565  |  Meenakshi.jss3011@gmail.com', PAGE_W / 2, 248, { align: 'center' });
+  doc.text('Property No. 26, Basement, DLF Industrial Area', PAGE_W / 2, 232, { align: 'center' });
+  doc.text('Moti Nagar, Delhi - 110015', PAGE_W / 2, 239, { align: 'center' });
+  doc.text('+91 9354162565 / +91 9810201088  |  support@kishkindhaindustry.com', PAGE_W / 2, 248, { align: 'center' });
   doc.text('GSTIN: 07ABFFK0271R1ZX', PAGE_W / 2, 255, { align: 'center' });
 
   // Bottom accent strip
   doc.setFillColor(...C.accent);
   doc.rect(0, PAGE_H - 3, PAGE_W, 3, 'F');
 
-  /* ── CATEGORY PAGES ──────────────────────────────────────── */
+  /* ── PRODUCT CONTENT (continuous flow, no forced page breaks) ── */
 
-  for (const cat of categories) {
-    newPage();
+  // Start first content page
+  newPage();
+  y = M;
+  const CAT_HEADER_H = 14; // category header height
+  const DESC_EXTRA = 6;    // space for description
 
-    // ── Category header band (full width) ──
-    doc.setFillColor(...C.primary);
-    doc.rect(0, 0, PAGE_W, 22, 'F');
-    doc.setFillColor(...C.accent);
-    doc.rect(0, 0, PAGE_W, 1.5, 'F');
-
-    doc.setFont('helvetica', 'bold');
-    doc.setFontSize(16);
-    doc.setTextColor(...C.white);
-    doc.text(cat.name, M, 13);
-
+  for (let ci = 0; ci < categories.length; ci++) {
+    const cat = categories[ci];
     const catProducts = getProductsByCategory(cat.id);
-    doc.setFont('helvetica', 'normal');
-    doc.setFontSize(8);
-    doc.setTextColor(...C.accent);
-    doc.text(`${catProducts.length} products`, M, 19);
-
-    // ── Description ──
-    y = 28;
-    doc.setFont('helvetica', 'italic');
-    doc.setFontSize(7.5);
-    doc.setTextColor(...C.textSec);
-    const dl = doc.splitTextToSize(cat.description, W);
-    doc.text(dl, M, y);
-    y += dl.length * 3.2 + 4;
-
-    // ── Sub-categories ──
     const groups = groupBySub(catProducts, cat);
 
+    // ── Category header ──
+    // Need space for header + description + at least one sub-header + 2 rows
+    need(CAT_HEADER_H + DESC_EXTRA + SUB_H + ROW_H * 2);
+
+    // Dark green category band (within margins)
+    band(C.primary, CAT_HEADER_H);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(11);
+    doc.setTextColor(...C.white);
+    doc.text(cat.name, M + 4, y + 6);
+    doc.setFont('helvetica', 'normal');
+    doc.setFontSize(7);
+    doc.setTextColor(...C.accent);
+    doc.text(`${catProducts.length} products`, M + 4, y + 11);
+    y += CAT_HEADER_H;
+
+    // Description (compact)
+    y += 1.5;
+    doc.setFont('helvetica', 'italic');
+    doc.setFontSize(7);
+    doc.setTextColor(...C.textSec);
+    const dl = doc.splitTextToSize(cat.description, W);
+    doc.text(dl, M, y + 3);
+    y += dl.length * 3 + 3;
+
+    // ── Sub-categories ──
     for (let gi = 0; gi < groups.length; gi++) {
       const g = groups[gi];
 
-      // Check if header + at least 2 rows fit
-      need(SUB_H + ROW_H * Math.min(g.items.length, 2) + 2);
+      // Ensure header + at least 1 row fits
+      need(SUB_H + ROW_H);
 
       // Sub-category header
       band(C.pLight, SUB_H);
       doc.setFont('helvetica', 'bold');
-      doc.setFontSize(8);
+      doc.setFontSize(7.5);
       doc.setTextColor(...C.white);
       doc.text(g.name, M + 3, y + 4.8);
       y += SUB_H;
@@ -180,37 +185,42 @@ export function generateCataloguePdf() {
         const p = g.items[i];
 
         // Alternating row bg
-        if (i % 2 === 0) {
-          band(C.bg, ROW_H);
-        }
+        if (i % 2 === 0) band(C.bg, ROW_H);
 
         // Bottom hairline
         doc.setDrawColor(...C.line);
         doc.setLineWidth(0.1);
         doc.line(M, y + ROW_H, M + W, y + ROW_H);
 
-        // Product name (vertically centered in row)
-        const textY = y + ROW_H * 0.65;
+        // Product name (vertically centered)
+        const tY = y + ROW_H * 0.65;
         doc.setFont('helvetica', 'normal');
-        doc.setFontSize(8.5);
+        doc.setFontSize(8);
         doc.setTextColor(...C.text);
-        doc.text(p.name, M + 3, textY);
+        doc.text(p.name, M + 3, tY);
 
         // Variants
         if (p.variants) {
           doc.setFontSize(6.5);
           doc.setTextColor(...C.textSec);
           const vt = p.variants.length > 50 ? p.variants.slice(0, 47) + '...' : p.variants;
-          doc.text(vt, M + W - 2, textY, { align: 'right' });
+          doc.text(vt, M + W - 2, tY, { align: 'right' });
         }
 
         y += ROW_H;
       }
 
-      // Gap before next sub-category
       y += GAP_SUB;
     }
 
+    // Small extra gap between categories (but not after last)
+    if (ci < categories.length - 1) y += 3;
+  }
+
+  // Footer on every page
+  const totalPages = doc.getNumberOfPages();
+  for (let i = 2; i <= totalPages; i++) {
+    doc.setPage(i);
     footer();
   }
 
