@@ -4,18 +4,64 @@ import sgMail from '@sendgrid/mail';
 // Initialize SendGrid with API key
 sgMail.setApiKey(process.env.SENDGRID_API_KEY || '');
 
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '';
+
 interface ContactFormData {
   fullName: string;
   businessName: string;
   email: string;
   phone: string;
   city: string;
+  gstin?: string;
   businessType: string;
   productsInterested: string[];
   monthlyRequirement: string;
   message: string;
 }
 
+// ── Telegram notification ──────────────────────────────────────
+async function sendTelegramMessage(data: ContactFormData) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return;
+
+  const products = data.productsInterested.join(', ');
+
+  const text = [
+    `🔔 *New Quote Request*`,
+    ``,
+    `👤 *${escTg(data.fullName)}*`,
+    `🏢 ${escTg(data.businessName)} _(${escTg(data.businessType)})_`,
+    `📍 ${escTg(data.city)}`,
+    ``,
+    `📞 ${escTg(data.phone)}`,
+    `✉️ ${escTg(data.email)}`,
+    data.gstin ? `🧾 GSTIN: ${escTg(data.gstin)}` : '',
+    ``,
+    `📦 *Products:* ${escTg(products)}`,
+    `💰 *Budget:* ${escTg(data.monthlyRequirement || 'Not specified')}`,
+    data.message ? `\n💬 *Message:*\n${escTg(data.message)}` : '',
+    ``,
+    `_via kishkindhaindustry.com_`,
+  ].filter(Boolean).join('\n');
+
+  await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text,
+      parse_mode: 'Markdown',
+      disable_web_page_preview: true,
+    }),
+  });
+}
+
+// Escape Telegram Markdown special characters
+function escTg(s: string): string {
+  return s.replace(/([_*\[\]()~`>#+\-=|{}.!])/g, '\\$1');
+}
+
+// ── Main handler ───────────────────────────────────────────────
 export async function POST(request: NextRequest) {
   try {
     const data: ContactFormData = await request.json();
@@ -68,6 +114,10 @@ export async function POST(request: NextRequest) {
               <td style="padding: 10px 0; color: #6B6B6B;"><strong>City:</strong></td>
               <td style="padding: 10px 0; color: #2D2D2D;">${data.city}</td>
             </tr>
+            ${data.gstin ? `<tr>
+              <td style="padding: 10px 0; color: #6B6B6B;"><strong>GSTIN:</strong></td>
+              <td style="padding: 10px 0; color: #2D2D2D;">${data.gstin}</td>
+            </tr>` : ''}
             <tr>
               <td style="padding: 10px 0; color: #6B6B6B;"><strong>Business Type:</strong></td>
               <td style="padding: 10px 0; color: #2D2D2D;">${data.businessType}</td>
@@ -110,7 +160,7 @@ Full Name: ${data.fullName}
 Business Name: ${data.businessName}
 Email: ${data.email}
 Phone: ${data.phone}
-City: ${data.city}
+City: ${data.city}${data.gstin ? `\nGSTIN: ${data.gstin}` : ''}
 Business Type: ${data.businessType}
 
 PRODUCT INTEREST
@@ -124,29 +174,41 @@ ${data.message ? `MESSAGE\n-------\n${data.message}` : ''}
 Submitted via kishkindhaindustry.com
     `.trim();
 
-    // Send email via SendGrid
-    const msg = {
-      to: 'support@kishkindhaindustry.com',
-      from: {
-        email: process.env.SENDGRID_FROM_EMAIL || 'noreply@kishkindhaindustry.com',
-        name: 'Kishkindha Industry Website',
-      },
-      replyTo: data.email,
-      subject: `New Quote Request: ${data.businessName} - ${data.city}`,
-      text: emailText,
-      html: emailHtml,
-    };
+    // Send email (if configured) + Telegram in parallel
+    const promises: Promise<unknown>[] = [];
 
-    await sgMail.send(msg);
+    if (process.env.SENDGRID_API_KEY) {
+      promises.push(
+        sgMail.send({
+          to: 'support@kishkindhaindustry.com',
+          from: {
+            email: process.env.SENDGRID_FROM_EMAIL || 'noreply@kishkindhaindustry.com',
+            name: 'Kishkindha Industry Website',
+          },
+          replyTo: data.email,
+          subject: `New Quote Request: ${data.businessName} - ${data.city}`,
+          text: emailText,
+          html: emailHtml,
+        })
+      );
+    }
+
+    promises.push(
+      sendTelegramMessage(data).catch((err) => {
+        console.error('Telegram notification failed:', err);
+      })
+    );
+
+    await Promise.all(promises);
 
     return NextResponse.json(
       { success: true, message: 'Email sent successfully' },
       { status: 200 }
     );
   } catch (error) {
-    console.error('SendGrid error:', error);
+    console.error('Contact form error:', error);
     return NextResponse.json(
-      { error: 'Failed to send email. Please try again later.' },
+      { error: 'Failed to send message. Please try again later.' },
       { status: 500 }
     );
   }
